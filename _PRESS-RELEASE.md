@@ -18,27 +18,41 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Lunch Break (aka I Need A Fucking Break)
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
+  Introducing a simple trip planner that will route you from work to a sweet treat to an urban park, all within an hour walking distance. 
+
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+
+  Looking for a sweet treat to satisfy that midday slump? This product will route you to the nearest sweet treat of your choosing and then to an elusive urban park to make you feel like you're at least getting some fresh air for the crap you're putting into your body. All routes are designed to get you there and back in an hour or less. 
 
 ## Problem ##
   > Describe the problem your product solves.
 
+  For those that struggle to figure out how to #treatyourself, this app will give you just the right break from your mundane work day. A sweet treat and a park all in under an hour.
+
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+
+  Lunch Break will route you to the nearest dessert-like option within a mile radius and then to a park depending on your cravings. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
 
+  "Lunch Break (or INAFB) is something that everyone needs and does from time to time. We're excited to help employees take better advantage of their lunch breaks."
+
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Need a break? Just click "Find me a Sweet Treat" for a random treat or filter by type. The app will automatically route you to the nearest park after to enjoy your sweet treat in the great outdoors. It will automatically choose a route that will get you back to your office in an hour or less.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "INAFB is the best thing that has happened to my slacking off game — I no longer need to waste valuable break hours thinking about where to go."
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Check out INAFB.com to try out the app for yourself! 
