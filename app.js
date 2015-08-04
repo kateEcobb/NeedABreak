@@ -1,5 +1,4 @@
 var app; 
-
 $(function(){ 
   app = {
 
@@ -9,6 +8,8 @@ $(function(){
      directionsService: null,
      infowindow: new google.maps.InfoWindow(),
      HR: null, 
+     onePOPO: null,
+     places: null,
 
      placesArray: [],
 
@@ -43,31 +44,39 @@ $(function(){
         openNow: true,
         keyword: 'dessert'
       }
-
-      var places = new google.maps.places.PlacesService(app.map);
-      app.performSearch(sweetTreats, places, function(){ 
-        app.calcRoute();
-        app.handleInfo();
-        console.log(app.oneSweetTreat)
+     var parks = { 
+        location: app.HR, 
+        radius: 1000,
+        keyword: 'park'
+     }
+    
+      app.places = new google.maps.places.PlacesService(app.map);
+      app.performSearch(sweetTreats, app.places, function(){ 
+        app.performParkSearch(parks, app.places, function(){ 
+          console.log(app.oneSweetTreat)
+          console.log(app.onePOPO)
+          app.calcRoute();
+          app.handleInfo();
+        });
       });
     },
 
     handleInfo: function(){ 
       $('#desc').html('<p>'+ app.oneSweetTreat.name + '</p>' + '<p>'+ app.oneSweetTreat.vicinity + '</p>' + '<p> Rating: ' +app.oneSweetTreat.rating + '/5 </p>' )
-
     },
 
     calcRoute: function(){ 
       for (var i=0; i<app.placesArray.length; i++){ 
         app.placesArray[i].setMap(null);
-      }
-      //waypoints will be stored as an array of objects -- location and stopover(optional)
+     }
 
       var start = 'Hack Reactor, 944 market st, San Francisco, California'; 
-      var end = app.oneSweetTreat.geometry.location;
-
+      var waypoint = [{location: app.oneSweetTreat.geometry.location}]
+      var end = app.onePOPO.geometry.location;
+    
       var request = { 
         origin: start, 
+        waypoints: waypoint,
         destination: end, 
         travelMode: google.maps.TravelMode.WALKING
       }
@@ -79,8 +88,19 @@ $(function(){
       });
     },
 
-    performSearch: function(y, x, callback){ 
+    performParkSearch: function(y,x,callback){ 
       x.nearbySearch(y, function(results, status){ 
+        if(status !== google.maps.places.PlacesServiceStatus.OK){ 
+          alert(status);
+          return;
+        }
+        app.onePOPO = results[Math.floor(Math.random()*results.length)]
+        callback(app.onePOPO)
+      });
+    },
+
+    performSearch: function(y, x, callback){ 
+        x.nearbySearch(y, function(results, status){ 
         if(status !== google.maps.places.PlacesServiceStatus.OK){ 
           alert(status);
           return;
@@ -105,11 +125,3 @@ $(function(){
   
   };
 }());
-
-
-
-
-
-
-
-
