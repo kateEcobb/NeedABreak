@@ -40,18 +40,19 @@ $(function(){
     finder: function(){ 
       var sweetTreats = { 
         location: app.HR, 
-        radius: 10000,
+        radius: 750,
         openNow: true,
         keyword: 'dessert'
       }
-     var parks = { 
-        location: app.HR, 
-        radius: 1000,
-        keyword: 'park'
-     }
     
       app.places = new google.maps.places.PlacesService(app.map);
       app.performSearch(sweetTreats, app.places, function(){ 
+           var parks = { 
+              location: app.oneSweetTreat.geometry.location, 
+              radius: 750,
+              types: ['park'] 
+           }
+
         app.performParkSearch(parks, app.places, function(){ 
           console.log(app.oneSweetTreat)
           console.log(app.onePOPO)
@@ -62,7 +63,8 @@ $(function(){
     },
 
     handleInfo: function(){ 
-      $('#desc').html('<p>'+ app.oneSweetTreat.name + '</p>' + '<p>'+ app.oneSweetTreat.vicinity + '</p>' + '<p> Rating: ' +app.oneSweetTreat.rating + '/5 </p>' )
+      $('#desc').html('<p>'+ app.oneSweetTreat.name + '</p>' + '<p>'+ app.oneSweetTreat.vicinity + '</p>' + '<p> Rating: ' +app.oneSweetTreat.rating + '/5 </p>' );
+      $('#POPOS').html('<p>'+ app.onePOPO.name + '</p>' + '<p>'+ app.onePOPO.vicinity + '</p>');
     },
 
     calcRoute: function(){ 
