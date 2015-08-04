@@ -1,13 +1,27 @@
 var map;
+var oneSweetTreat;
 var directionsDisplay;
 var directionsService; 
 var stepDisplay; 
 var infowindow = new google.maps.InfoWindow();
 
+var placesArray = [];
+
+var app = angular.module('sweetTreat', []);
+
+app.controller('mapCtrl', function($scope){ 
+  $scope.map = new google.maps.LatLng(37.783910, -122.408978);
+
+})
+
+
+
+
 
 var initialize = function(){
+  
   //instantiate directions
-  var directionsService = new google.maps.DirectionsService();
+  directionsService = new google.maps.DirectionsService();
   
   //create a map centered on HR
   var HR = new google.maps.LatLng(37.783910, -122.408978);
@@ -22,48 +36,59 @@ var initialize = function(){
   var rendererOpts = { 
     map: map 
   }
+  
   directionsDisplay = new google.maps.DirectionsRenderer(rendererOpts); 
   //info window for specific directions TODO
 
   var sweetTreats = { 
     location: HR, 
-    radius: 500,
+    radius: 60000,
+    openNow: true,
     keyword: 'dessert'
   }
+  stepDisplay = new google.maps.InfoWindow();
 
-var placesArray = [];
 var places = new google.maps.places.PlacesService(map);
-  
-performSearch(sweetTreats, places);
+performSearch(sweetTreats, places, function(){ 
+  console.log(oneSweetTreat)
+  calcRoute();
+  this.trigger()
+});
 
 }; //end of initialize
 
-
 var calcRoute = function(){ 
-  placesArray.forEach(function(place){ 
-    place.setMap(null);
-  });
+  for (var i=0; i<placesArray.length; i++){ 
+    placesArray[i].setMap(null);
+  }
+  //waypoints will be stored as an array of objects -- location and stopover(optional)
 
-  var HR = '944 market street, san francisco, california'; 
-  //get waypoints from search query
-
+  var start = 'Hack Reactor, San Francisco, California'; 
+  var end = oneSweetTreat.geometry.location;
 
   var request = { 
-    origin: blah
-
+    origin: start, 
+    destination: end, 
+    travelMode: google.maps.TravelMode.WALKING
   }
 
-}
+  directionsService.route(request, function(response, status){ 
+    if(status == google.maps.DirectionsStatus.OK){ 
+      directionsDisplay.setDirections(response); 
+    }
+  });
+};
 
-var performSearch = function(y, x){ 
+var performSearch = function(y, x, callback){ 
   x.nearbySearch(y, function(results, status){ 
     if(status !== google.maps.places.PlacesServiceStatus.OK){ 
       alert(status);
       return;
     }
-    for (var i=0; i<results.length; i++){ 
-      createMarker(results[i])
-    }
+    oneSweetTreat = results[Math.floor(Math.random()*results.length)]
+    callback(oneSweetTreat)
+
+    // createMarker(oneSweetTreat)
   });
 };
 
@@ -79,6 +104,8 @@ var createMarker = function(place){
     infowindow.open(map, this);
   });
 };
+
+google.maps.event.addListener()
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
