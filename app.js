@@ -116,6 +116,9 @@ $(function(){
         if(status == google.maps.DirectionsStatus.OK){ 
           app.directionsDisplay.setDirections(response); 
           var leg = response.routes[0].legs;
+        for(var i=0; i<app.placesArray.length; i++){ 
+          app.placesArray[i].setMap(null)
+        };
           app.createMarker(leg[0].start_location, app.icons.hackReactor);
           app.createMarker(leg[0].end_location, app.icons.cone);
           app.createMarker(leg[1].end_location, app.icons.park);
@@ -146,11 +149,13 @@ $(function(){
     },
 
     createMarker: function(place, icon){ 
+      
       var marker = new google.maps.Marker({ 
         map: app.map, 
         position: place, 
         icon: icon
       })
+      app.placesArray.push(marker);
     }
   
   };
