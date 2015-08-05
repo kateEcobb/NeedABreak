@@ -16,7 +16,6 @@ $(function(){
      icons: { 
       cone: { 
         url: 'ST.png', 
-        size: new google.maps.Size(44,32), 
         origin: new google.maps.Point(0,0), 
         anchor: new google.maps.Point(22,32)
       },
@@ -52,7 +51,8 @@ $(function(){
       
       //direction renderer
       var rendererOpts = { 
-        map: app.map
+        map: app.map,
+        suppressMarkers: true
       }
 
       app.directionsDisplay = new google.maps.DirectionsRenderer(rendererOpts); 
