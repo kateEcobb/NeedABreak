@@ -7,10 +7,51 @@ html, body {
 #map-canvas { 
   height: 400px;
   width: 800px;
-
+  margin: auto;
+  position: relative; 
 }
 
 #newST{ 
-  color: grey;
+  font-family: 'Arimo', sans-serif;
+  margin: auto; 
+  padding: 20px; 
+  text-align: center;
+  background-color: pink;
+  width: 200px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
 
+#newST:hover{ 
+  cursor: pointer;
+}
+
+#container { 
+  width: 800px;
+  margin: auto;
+}
+#mapContainer{ 
+  width: 800px;
+  margin: auto;
+}
+
+#POPOS{ 
+  font-family: 'Arimo', sans-serif;
+  margin: auto;
+  width: 300px;
+  float: right;
+  text-align: right;
+}
+
+#desc { 
+  font-family: 'Arimo', sans-serif;
+  margin: auto;
+  width: 300px; 
+  float: left;
+}
+
+
+h1{ 
+  font-family: 'Short Stack', cursive;
+  text-align: center;
 }
